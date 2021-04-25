@@ -2,15 +2,13 @@
 
 [ext_resource path="res://game.gd" type="Script" id=1]
 [ext_resource path="res://deeper.tscn" type="PackedScene" id=2]
-
-[sub_resource type="DynamicFontData" id=1]
-font_path = "res://assets/monogram.ttf"
+[ext_resource path="res://assets/No Virus.ttf" type="DynamicFontData" id=3]
 
 [sub_resource type="DynamicFont" id=2]
 size = 64
 use_mipmaps = true
 use_filter = true
-font_data = SubResource( 1 )
+font_data = ExtResource( 3 )
 
 [node name="MarginContainer" type="MarginContainer"]
 margin_right = 400.0
@@ -25,16 +23,26 @@ __meta__ = {
 margin_right = 400.0
 margin_bottom = 800.0
 
-[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 margin_right = 400.0
-margin_bottom = 102.0
+margin_bottom = 105.0
+custom_constants/margin_top = 25
 
-[node name="Deeper" parent="VBoxContainer/CenterContainer" instance=ExtResource( 2 )]
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/MarginContainer"]
+margin_top = 25.0
+margin_right = 400.0
+margin_bottom = 105.0
+
+[node name="Deeper" parent="VBoxContainer/MarginContainer/CenterContainer" instance=ExtResource( 2 )]
+anchor_right = 0.0
+margin_left = 62.0
+margin_right = 338.0
+margin_bottom = 80.0
 
 [node name="Control1" type="Control" parent="VBoxContainer"]
-margin_top = 106.0
+margin_top = 109.0
 margin_right = 400.0
-margin_bottom = 267.0
+margin_bottom = 293.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
@@ -42,9 +50,9 @@ __meta__ = {
 }
 
 [node name="MarginContainer1" type="MarginContainer" parent="VBoxContainer"]
-margin_top = 271.0
+margin_top = 297.0
 margin_right = 400.0
-margin_bottom = 423.0
+margin_bottom = 427.0
 mouse_default_cursor_shape = 2
 custom_constants/margin_top = 25
 custom_constants/margin_bottom = 25
@@ -52,15 +60,19 @@ custom_constants/margin_bottom = 25
 [node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/MarginContainer1"]
 margin_top = 25.0
 margin_right = 400.0
-margin_bottom = 127.0
+margin_bottom = 105.0
 mouse_filter = 2
 
 [node name="Deeper" parent="VBoxContainer/MarginContainer1/CenterContainer" instance=ExtResource( 2 )]
+anchor_right = 0.0
+margin_left = 62.0
+margin_right = 338.0
+margin_bottom = 80.0
 
 [node name="RichTextLabelOr" type="RichTextLabel" parent="VBoxContainer"]
-margin_top = 427.0
+margin_top = 431.0
 margin_right = 400.0
-margin_bottom = 479.0
+margin_bottom = 497.0
 custom_fonts/normal_font = SubResource( 2 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 bbcode_enabled = true
@@ -72,23 +84,27 @@ __meta__ = {
 }
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
-margin_top = 483.0
+margin_top = 501.0
 margin_right = 400.0
-margin_bottom = 635.0
+margin_bottom = 611.0
 mouse_default_cursor_shape = 2
-custom_constants/margin_top = 25
+custom_constants/margin_top = 5
 custom_constants/margin_bottom = 25
 
 [node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/MarginContainer2"]
-margin_top = 25.0
+margin_top = 5.0
 margin_right = 400.0
-margin_bottom = 127.0
+margin_bottom = 85.0
 mouse_filter = 2
 
 [node name="Deeper" parent="VBoxContainer/MarginContainer2/CenterContainer" instance=ExtResource( 2 )]
+anchor_right = 0.0
+margin_left = 62.0
+margin_right = 338.0
+margin_bottom = 80.0
 
 [node name="Control2" type="Control" parent="VBoxContainer"]
-margin_top = 639.0
+margin_top = 615.0
 margin_right = 400.0
 margin_bottom = 800.0
 size_flags_horizontal = 3
