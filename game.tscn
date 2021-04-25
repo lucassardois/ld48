@@ -1,0 +1,101 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://game.gd" type="Script" id=1]
+[ext_resource path="res://deeper.tscn" type="PackedScene" id=2]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://assets/monogram.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 64
+use_mipmaps = true
+use_filter = true
+font_data = SubResource( 1 )
+
+[node name="MarginContainer" type="MarginContainer"]
+margin_right = 400.0
+margin_bottom = 800.0
+mouse_filter = 1
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 400.0
+margin_bottom = 800.0
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+margin_right = 400.0
+margin_bottom = 102.0
+
+[node name="Deeper" parent="VBoxContainer/CenterContainer" instance=ExtResource( 2 )]
+
+[node name="Control1" type="Control" parent="VBoxContainer"]
+margin_top = 106.0
+margin_right = 400.0
+margin_bottom = 267.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer1" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 271.0
+margin_right = 400.0
+margin_bottom = 423.0
+mouse_default_cursor_shape = 2
+custom_constants/margin_top = 25
+custom_constants/margin_bottom = 25
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/MarginContainer1"]
+margin_top = 25.0
+margin_right = 400.0
+margin_bottom = 127.0
+mouse_filter = 2
+
+[node name="Deeper" parent="VBoxContainer/MarginContainer1/CenterContainer" instance=ExtResource( 2 )]
+
+[node name="RichTextLabelOr" type="RichTextLabel" parent="VBoxContainer"]
+margin_top = 427.0
+margin_right = 400.0
+margin_bottom = 479.0
+custom_fonts/normal_font = SubResource( 2 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+bbcode_enabled = true
+bbcode_text = "[center]or[/center]"
+text = "or"
+fit_content_height = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 483.0
+margin_right = 400.0
+margin_bottom = 635.0
+mouse_default_cursor_shape = 2
+custom_constants/margin_top = 25
+custom_constants/margin_bottom = 25
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/MarginContainer2"]
+margin_top = 25.0
+margin_right = 400.0
+margin_bottom = 127.0
+mouse_filter = 2
+
+[node name="Deeper" parent="VBoxContainer/MarginContainer2/CenterContainer" instance=ExtResource( 2 )]
+
+[node name="Control2" type="Control" parent="VBoxContainer"]
+margin_top = 639.0
+margin_right = 400.0
+margin_bottom = 800.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="gui_input" from="VBoxContainer/MarginContainer1" to="." method="_on_MarginContainer1_gui_input"]
+[connection signal="gui_input" from="VBoxContainer/MarginContainer2" to="." method="_on_MarginContainer2_gui_input"]

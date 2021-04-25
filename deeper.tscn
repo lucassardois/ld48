@@ -1,0 +1,96 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/monogram.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://deeper.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 128
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 128
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 128
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 128
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 128
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 128
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 1 )
+
+[node name="Deeper" type="HBoxContainer"]
+margin_left = 46.0
+margin_right = 354.0
+margin_bottom = 102.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="D" type="Label" parent="."]
+margin_right = 48.0
+margin_bottom = 102.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "D"
+
+[node name="e1" type="Label" parent="."]
+margin_left = 52.0
+margin_right = 100.0
+margin_bottom = 102.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "e"
+
+[node name="e2" type="Label" parent="."]
+margin_left = 104.0
+margin_right = 152.0
+margin_bottom = 102.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "e"
+
+[node name="p" type="Label" parent="."]
+margin_left = 156.0
+margin_right = 204.0
+margin_bottom = 102.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "p"
+
+[node name="e3" type="Label" parent="."]
+margin_left = 208.0
+margin_right = 256.0
+margin_bottom = 102.0
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "e"
+
+[node name="r" type="Label" parent="."]
+margin_left = 260.0
+margin_right = 308.0
+margin_bottom = 102.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "r"
