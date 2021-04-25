@@ -1,4 +1,4 @@
-extends MarginContainer
+extends Control
 
 onready var camera = $Camera2D
 onready var deeper_header = $VBoxContainer/MarginContainer/CenterContainer/Deeper
@@ -6,13 +6,16 @@ onready var deeper1 = $VBoxContainer/MarginContainer1/CenterContainer/Deeper
 onready var deeper2 = $VBoxContainer/MarginContainer2/CenterContainer/Deeper
 onready var or2 = $VBoxContainer/RichTextLabelOr2
 onready var deeper3 = $VBoxContainer/MarginContainer3/CenterContainer/Deeper
-onready var label_score = $VBoxContainer/RichTextLabelScore
+onready var label_score = $VBoxContainer/HBoxContainer/RichTextLabelScore
+onready var thanks = $VBoxContainer/RichTextLabelThanks
+onready var fade = $ColorRect
 
 var score = 0
 
 onready var deepers = [deeper1, deeper2]
 var correct_deeper = null
 var incorrect_deeper = null
+var lost = false
 
 var diffs = [
 	"letter",
@@ -27,6 +30,19 @@ var diffs = [
 
 func _ready():
 	randomize()
+	
+	var theme_color = random_color(false)
+	
+#	fade.color = theme_color
+#	fade.visible = true
+#	var tween = Tween.new()
+#	add_child(tween)
+#	tween.interpolate_property(fade, "rect_position:y", null, 815,
+#			1, Tween.TRANS_SINE, Tween.EASE_OUT)
+#	tween.start()
+	
+	label_score.set("custom_colors/default_color", theme_color)
+	
 	next(true)
 	
 
@@ -127,9 +143,7 @@ func next(start):
 
 func _input(event):
 	if event.is_action_pressed("debug_restart"):
-		var err = get_tree().reload_current_scene()
-		if err:
-			print("ERROR NUMBER " + err)
+		var _err = get_tree().change_scene("res://start.tscn")
 	if event.is_action_pressed("debug_quit"):
 		get_tree().quit()
 
@@ -147,7 +161,7 @@ func random_letter():
 	return letters[randi() % letters.size()]
 	
 
-func random_color():
+func random_color(black):
 	var colors = [
 		Color("#ff8bb8"),
 		Color("#dc3839"),
@@ -155,9 +169,12 @@ func random_color():
 		Color("#f7de0f"),
 		Color("#9cc841"),
 		Color("#019db6"),
-		Color("#5d4486"),
-		Color.black
+		Color("#5d4486")
 	]
+	
+	if black:
+		colors.push_back(Color.black)
+	
 	return colors[randi() % colors.size()]
 
 
@@ -216,9 +233,9 @@ func diff(deeper):
 		"color":
 			var letter = deeper.random_letter().get_child(0)
 			var current_color = letter.get("custom_colors/font_color")
-			var color = random_color()
+			var color = random_color(true)
 			while current_color == color:
-				color = random_color()
+				color = random_color(true)
 			letter.add_color_override("font_color", color)
 		"font":
 			var letter = deeper.random_letter().get_child(0)
@@ -280,3 +297,20 @@ func answer(selected_deeper):
 		next(false)
 	else:
 		camera.start_shake(0.25, 4)
+		lose()
+
+
+func _on_Timer_timeout():
+	lose()
+
+
+func lose():
+	lost = true
+	deeper_header.visible = false
+	deeper1.get_parent().get_parent().visible = false
+	deeper2.get_parent().get_parent().visible = false
+	deeper3.get_parent().get_parent().visible = false
+	$VBoxContainer/RichTextLabelOr.visible = false
+	or2.visible = false
+	thanks.visible = true
+	$Timer.stop()
