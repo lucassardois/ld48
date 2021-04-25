@@ -1,5 +1,4 @@
-extends HBoxContainer
-
+extends Control
 
 
 func get_letters():
@@ -7,7 +6,7 @@ func get_letters():
 	
 
 func text_length():
-	return get_letters().size()
+	return get_child_count()
 
 
 func random_letter():

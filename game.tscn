@@ -1,14 +1,39 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://game.gd" type="Script" id=1]
 [ext_resource path="res://deeper.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/No Virus.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://cemera.gd" type="Script" id=4]
 
 [sub_resource type="DynamicFont" id=2]
 size = 64
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 100
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 3 )
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends RichTextLabel
+
+var tween = null
+
+
+func _ready():
+	rect_pivot_offset = rect_size / 2
+	tween = Tween.new()
+	add_child(tween)
+
+
+func play_animation():
+	tween.interpolate_property(self, \"rect_scale\", Vector2(1.5, 1.5), 
+			Vector2.ONE, 0.2, Tween.TRANS_SINE, Tween.EASE_OUT)
+	tween.start()
+"
 
 [node name="MarginContainer" type="MarginContainer"]
 margin_right = 400.0
@@ -35,44 +60,45 @@ margin_bottom = 105.0
 
 [node name="Deeper" parent="VBoxContainer/MarginContainer/CenterContainer" instance=ExtResource( 2 )]
 anchor_right = 0.0
-margin_left = 62.0
-margin_right = 338.0
+margin_left = 65.0
+margin_right = 335.0
 margin_bottom = 80.0
 
 [node name="Control1" type="Control" parent="VBoxContainer"]
 margin_top = 109.0
 margin_right = 400.0
-margin_bottom = 293.0
+margin_bottom = 307.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MarginContainer1" type="MarginContainer" parent="VBoxContainer"]
-margin_top = 297.0
+margin_top = 311.0
 margin_right = 400.0
-margin_bottom = 427.0
-mouse_default_cursor_shape = 2
+margin_bottom = 426.0
 custom_constants/margin_top = 25
-custom_constants/margin_bottom = 25
 
 [node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/MarginContainer1"]
 margin_top = 25.0
 margin_right = 400.0
-margin_bottom = 105.0
-mouse_filter = 2
+margin_bottom = 115.0
+rect_min_size = Vector2( 0, 90 )
+mouse_default_cursor_shape = 2
 
 [node name="Deeper" parent="VBoxContainer/MarginContainer1/CenterContainer" instance=ExtResource( 2 )]
 anchor_right = 0.0
-margin_left = 62.0
-margin_right = 338.0
-margin_bottom = 80.0
+margin_left = 65.0
+margin_top = 5.0
+margin_right = 335.0
+margin_bottom = 85.0
 
 [node name="RichTextLabelOr" type="RichTextLabel" parent="VBoxContainer"]
-margin_top = 431.0
+margin_top = 430.0
 margin_right = 400.0
-margin_bottom = 497.0
+margin_bottom = 496.0
 custom_fonts/normal_font = SubResource( 2 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 bbcode_enabled = true
@@ -84,34 +110,87 @@ __meta__ = {
 }
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
-margin_top = 501.0
+margin_top = 500.0
 margin_right = 400.0
-margin_bottom = 611.0
-mouse_default_cursor_shape = 2
-custom_constants/margin_top = 5
-custom_constants/margin_bottom = 25
+margin_bottom = 590.0
 
 [node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/MarginContainer2"]
-margin_top = 5.0
 margin_right = 400.0
-margin_bottom = 85.0
-mouse_filter = 2
+margin_bottom = 90.0
+rect_min_size = Vector2( 0, 90 )
+mouse_default_cursor_shape = 2
 
 [node name="Deeper" parent="VBoxContainer/MarginContainer2/CenterContainer" instance=ExtResource( 2 )]
 anchor_right = 0.0
-margin_left = 62.0
-margin_right = 338.0
-margin_bottom = 80.0
+margin_left = 65.0
+margin_top = 5.0
+margin_right = 335.0
+margin_bottom = 85.0
+
+[node name="RichTextLabelOr2" type="RichTextLabel" parent="VBoxContainer"]
+visible = false
+margin_top = 528.0
+margin_right = 400.0
+margin_bottom = 594.0
+custom_fonts/normal_font = SubResource( 2 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+bbcode_enabled = true
+bbcode_text = "[center]or[/center]"
+text = "or"
+fit_content_height = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
+visible = false
+margin_top = 551.0
+margin_right = 400.0
+margin_bottom = 641.0
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/MarginContainer3"]
+margin_right = 400.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 0, 90 )
+mouse_default_cursor_shape = 2
+
+[node name="Deeper" parent="VBoxContainer/MarginContainer3/CenterContainer" instance=ExtResource( 2 )]
+anchor_right = 0.0
+margin_left = 65.0
+margin_top = 5.0
+margin_right = 335.0
+margin_bottom = 85.0
 
 [node name="Control2" type="Control" parent="VBoxContainer"]
-margin_top = 615.0
+margin_top = 594.0
 margin_right = 400.0
-margin_bottom = 800.0
+margin_bottom = 694.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="gui_input" from="VBoxContainer/MarginContainer1" to="." method="_on_MarginContainer1_gui_input"]
-[connection signal="gui_input" from="VBoxContainer/MarginContainer2" to="." method="_on_MarginContainer2_gui_input"]
+[node name="RichTextLabelScore" type="RichTextLabel" parent="VBoxContainer"]
+margin_top = 698.0
+margin_right = 400.0
+margin_bottom = 800.0
+custom_fonts/normal_font = SubResource( 4 )
+custom_colors/default_color = Color( 0.968627, 0.870588, 0.0588235, 1 )
+bbcode_enabled = true
+bbcode_text = "[center]~ 0 ~[/center]"
+text = "~ 0 ~"
+fit_content_height = true
+script = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2( 200, 400 )
+current = true
+script = ExtResource( 4 )
+
+[connection signal="gui_input" from="VBoxContainer/MarginContainer1/CenterContainer" to="." method="_on_deeper1_gui_input"]
+[connection signal="gui_input" from="VBoxContainer/MarginContainer2/CenterContainer" to="." method="_on_deeper2_gui_input"]
+[connection signal="gui_input" from="VBoxContainer/MarginContainer3/CenterContainer" to="." method="_on_deeper3_gui_input"]
